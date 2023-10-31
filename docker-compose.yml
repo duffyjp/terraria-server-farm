@@ -1,0 +1,62 @@
+version: "3.8"
+services:
+
+  classic:
+    container_name: classic
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7777:7777/udp"
+      - "7777:7777/tcp"
+    command: ./TerrariaServerWrapper -p 7777 -players 16 -world /root/.local/share/Terraria/Worlds/classic.wld -worldname classic -autocreate 3 -noupnp -steam -config classic.txt
+    volumes:
+      - ./classic_world:/root/.local/share/Terraria/Worlds/
+
+  expert:
+    container_name: expert
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7778:7778/udp"
+      - "7778:7778/tcp"
+    command: ./TerrariaServerWrapper -p 7778 -players 16 -world /root/.local/share/Terraria/Worlds/expert.wld -worldname expert -autocreate 3 -noupnp -steam -config expert.txt
+    volumes:
+      - ./expert_world:/root/.local/share/Terraria/Worlds/
+
+  master:
+    container_name: master
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7779:7779/udp"
+      - "7779:7779/tcp"
+    command: ./TerrariaServerWrapper -p 7779 -players 16 -world /root/.local/share/Terraria/Worlds/master.wld -worldname master -autocreate 3 -noupnp -steam -config master.txt
+    volumes:
+      - ./master_world:/root/.local/share/Terraria/Worlds/
+
+  legendary:
+    container_name: legendary
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7780:7780/udp"
+      - "7780:7780/tcp"
+    command: ./TerrariaServerWrapper -p 7780 -players 16 -world /root/.local/share/Terraria/Worlds/legendary.wld -worldname legendary -autocreate 3 -noupnp -steam -config legendary.txt
+    volumes:
+      - ./legendary_world:/root/.local/share/Terraria/Worlds/
+
+  bees:
+    container_name: bees
+    build:
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7781:7781/udp"
+      - "7781:7781/tcp"
+    command: ./TerrariaServerWrapper -p 7781 -players 16 -world /root/.local/share/Terraria/Worlds/bees.wld -worldname bees -autocreate 1 -noupnp -steam -seed notthebees -config master.txt
+    volumes:
+      - ./bees_world:/root/.local/share/Terraria/Worlds/
